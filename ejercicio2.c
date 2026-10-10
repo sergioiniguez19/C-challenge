@@ -9,13 +9,16 @@
 int main() {
 
 
+    int longitud = 5;
     char car;
-    char *cadena = malloc(sizeof(cadena));
+    char newchain;
+    char *cadena = calloc(longitud,sizeof(cadena));
 
     printf("INTRODUZCA LA CADENA DE CARACTERES: ");
-    scanf("%c", cadena);
+    scanf("%s", &newchain);
+    printf("Longitud de caracteres: %s", strlen(*newchain));
 
-    printf("Caracter: %c\n", *cadena+1);
+    //printf("Caracter: %c\n", cadena[11]);
     //printf("QUE CARACTER DESEA BUSCAR: ");
     //scanf("%c", &car);
 
