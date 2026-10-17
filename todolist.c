@@ -11,10 +11,27 @@ typedef struct task{
 
 
 
-void addtask(task_t head) {
+void addtask(task_t **head) {
+
+    char * name;
     task_t *newtask = (task_t *) malloc(sizeof(task_t));
     printf("Name of the task: ");
-    scanf("%c", &newtask->name);
+    scanf("%99s", newtask->name);
+    newtask->next = *head;
+    (*head) = newtask;
+
+};
+
+void displaytasks(task_t **head) {
+
+    task_t *actual = *head;
+    task_t *siguiente = NULL;
+    while (actual != NULL) {
+        siguiente = actual->next;
+        printf("Name of the task: %s \n", actual->name);
+        actual = siguiente;
+    };
+
 
 
 };
@@ -25,8 +42,8 @@ int input();
 
 
 int main() {
-    task_t lista[10];
-    int choice;
+    task_t *head = NULL;
+    int choice = 0;
     while (choice != 4){
     printf("1. Add a task\n");
     printf("2. Delete a task\n");
@@ -39,7 +56,7 @@ int main() {
 
         switch (choice) {
             case 1: {
-                addtask(&lista);
+                addtask(&head);
                 break;
             }
             case 2: {
@@ -48,6 +65,7 @@ int main() {
             }
             case 3: {
                 printf("Option 3 \n");
+                displaytasks(&head);
                 break;
             }
             case 4: {
