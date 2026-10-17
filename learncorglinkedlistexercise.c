@@ -35,13 +35,22 @@ int pop(node_t ** head) {
 }
 
 int remove_by_value(node_t ** head, int val) {
-    struct node **actual = head;
-    while ((**actual).val != 2){
-        actual = &(**actual).next;
+    node_t **actual = head;
+    node_t *temp= NULL;
+
+    while (*actual != NULL){
+
+        if ((*actual)->val == val) {
+            temp = *actual;
+            *actual = (*actual)->next;
+            free(temp);
+            return 1;
+        }
+
+        actual= &((*actual)->next);
+
     };
-    // Elimina el 3
-    free((*actual)->next);
-    (*actual)->next = NULL;
+    return -1;
 
 
 }
